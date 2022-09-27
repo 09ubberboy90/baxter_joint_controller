@@ -27,10 +27,10 @@ from baxter_core_msgs.msg import (
 JOINT_ANGLE_TOLERANCE = 0.008726646
 HEAD_PAN_ANGLE_TOLERANCE = 0.1396263401
 
-class MinimalPublisher(Node):
+class JointController(Node):
 
     def __init__(self):
-        super().__init__('minimal_publisher')
+        super().__init__('baxter_joint_controller')
         self.left_publisher = self.create_publisher(JointCommand, '/robot/limb/left/joint_command', 10)
         self.right_publisher = self.create_publisher(JointCommand, '/robot/limb/right/joint_command', 10)
         self._gripper_left = Gripper("left", self, False)
@@ -119,7 +119,7 @@ class MinimalPublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    node = MinimalPublisher()
+    node = JointController()
     executor = MultiThreadedExecutor()
     executor.add_node(node)
     executor.spin()
