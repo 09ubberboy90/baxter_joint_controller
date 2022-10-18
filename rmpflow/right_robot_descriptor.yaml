@@ -15,13 +15,13 @@ api_version: 1.0
 # to have an entry in the URDF, except when otherwise specified below under
 # cspace_urdf_bridge
 cspace:
-    - right_s0
-    - right_s1
-    - right_e0
-    - right_e1
-    - right_w0
-    - right_w1
-    - right_w2
+  - right_s0
+  - right_s1
+  - right_e0
+  - right_e1
+  - right_w0
+  - right_w1
+  - right_w2
 
 root_link: base
 subtree_root_link: torso
@@ -42,124 +42,77 @@ cspace_to_urdf_rules:
 #     - {name: panda_finger_joint2, rule: fixed, value: 0.025}
 
 composite_task_spaces: []
+collision_spheres:
+    - right_upper_shoulder:
+        - "center": [0.0, 0.0, -0.04]
+          "radius": 0.11
+        - "center": [0.0, 0.0, 0.05]
+          "radius": 0.10
+        - "center": [0.0, 0.0, 0.16]
+          "radius": 0.11
+        - "center": [0.0, 0.0, 0.25]
+          "radius": 0.11
+    - right_lower_shoulder:
+        - "center": [0.0, 0.0, 0.00]
+          "radius": 0.13
+    - right_upper_elbow:
+        - "center": [0.0, 0.0, 0.00]
+          "radius": 0.12
+        - "center": [0.0, 0.0, 0.1]
+          "radius": 0.10
+        - "center": [0.0, 0.0, 0.16]
+          "radius": 0.10
+        - "center": [0.0, 0.0, 0.25]
+          "radius": 0.10
+    - right_lower_elbow:
+        - "center": [0.0, 0.0, 0.00]
+          "radius": 0.12
+    - right_upper_forearm:
+        - "center": [0.0, 0.0, 0.00]
+          "radius": 0.1
+        - "center": [0.0, 0.0, 0.08]
+          "radius": 0.09
+        - "center": [0.0, 0.0, 0.15]
+          "radius": 0.09
+    - right_lower_forearm:
+        - "center": [0.0, 0.0, 0.00]
+          "radius": 0.1
+        - "center": [0.1, 0.0, 0.00]
+          "radius": 0.08
+    - right_wrist:
+        - "center": [0.0, 0.0, 0.05]
+          "radius": 0.07
+    - right_hand:
+        - "center": [0.0, 0.0, 0.00]
+          "radius": 0.06
+    - r_gripper_l_finger_tip:
+        - "center": [0.0, 0.0, 0.0]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.015]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.030]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.045]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.060]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.075]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.095]
+          "radius": 0.02
 
-# collision_spheres:
-#     - panda_link0:
-#         - "center": [0.0, 0.0, 0.05]
-#           "radius": 0.08
-#     - panda_link1:
-#         - "center": [0.0, -0.08, 0.0]
-#           "radius": 0.06
-#         - "center": [0.0, -0.03, 0.0]
-#           "radius": 0.06
-#         - "center": [0.0, 0.0, -0.12]
-#           "radius": 0.06
-#         - "center": [0.0, 0.0, -0.17]
-#           "radius": 0.06
-#     - panda_link2:
-#         - "center": [0.0, 0.0, 0.03]
-#           "radius": 0.06
-#         - "center": [0.0, 0.0, 0.08]
-#           "radius": 0.06
-#         - "center": [0.0, -0.12, 0.0]
-#           "radius": 0.06
-#         - "center": [0.0, -0.17, 0.0]
-#           "radius": 0.06
-#     - panda_link3:
-#         - "center": [0.0, 0.0, -0.06]
-#           "radius": 0.05
-#         - "center": [0.0, 0.0, -0.1]
-#           "radius": 0.06
-#         - "center": [0.08, 0.06, 0.0]
-#           "radius": 0.055
-#         - "center": [0.08, 0.02, 0.0]
-#           "radius": 0.055
-#     - panda_link4:
-#         - "center": [0.0, 0.0, 0.02]
-#           "radius": 0.055
-#         - "center": [0.0, 0.0, 0.06]
-#           "radius": 0.055
-#         - "center": [-0.08, 0.095, 0.0]
-#           "radius": 0.06
-#         - "center": [-0.08, 0.06, 0.0]
-#           "radius": 0.055
-#     - panda_link5:
-#         - "center": [0.0, 0.055, 0.0]
-#           "radius": 0.06
-#         - "center": [0.0, 0.075, 0.0]
-#           "radius": 0.06
-#         - "center": [0.0, 0.000, -0.22]
-#           "radius": 0.06
-#         - "center": [0.0, 0.05, -0.18]
-#           "radius": 0.05
-#         - "center": [0.01, 0.08, -0.14]
-#           "radius": 0.025
-#         - "center": [0.01, 0.085, -0.11]
-#           "radius": 0.025
-#         - "center": [0.01, 0.09, -0.08]
-#           "radius": 0.025
-#         - "center": [0.01, 0.095, -0.05]
-#           "radius": 0.025
-#         - "center": [-0.01, 0.08, -0.14]
-#           "radius": 0.025
-#         - "center": [-0.01, 0.085, -0.11]
-#           "radius": 0.025
-#         - "center": [-0.01, 0.09, -0.08]
-#           "radius": 0.025
-#         - "center": [-0.01, 0.095, -0.05]
-#           "radius": 0.025
-#     - panda_link6:
-#         - "center": [0.0, 0.0, 0.0]
-#           "radius": 0.06
-#         - "center": [0.08, 0.03, 0.0]
-#           "radius": 0.06
-#         - "center": [0.08, -0.01, 0.0]
-#           "radius": 0.06
-#     - panda_link7:
-#         - "center": [0.0, 0.0, 0.07]
-#           "radius": 0.05
-#         - "center": [0.02, 0.04, 0.08]
-#           "radius": 0.025
-#         - "center": [0.04, 0.02, 0.08]
-#           "radius": 0.025
-#         - "center": [0.04, 0.06, 0.085]
-#           "radius": 0.02
-#         - "center": [0.06, 0.04, 0.085]
-#           "radius": 0.02
-#     - panda_hand:
-#         - "center": [0.0, -0.075, 0.01]
-#           "radius": 0.028
-#         - "center": [0.0, -0.045, 0.01]
-#           "radius": 0.028
-#         - "center": [0.0, -0.015, 0.01]
-#           "radius": 0.028
-#         - "center": [0.0, 0.015, 0.01]
-#           "radius": 0.028
-#         - "center": [0.0, 0.045, 0.01]
-#           "radius": 0.028
-#         - "center": [0.0, 0.075, 0.01]
-#           "radius": 0.028
-#         - "center": [0.0, -0.075, 0.03]
-#           "radius": 0.026
-#         - "center": [0.0, -0.045, 0.03]
-#           "radius": 0.026
-#         - "center": [0.0, -0.015, 0.03]
-#           "radius": 0.026
-#         - "center": [0.0, 0.015, 0.03]
-#           "radius": 0.026
-#         - "center": [0.0, 0.045, 0.03]
-#           "radius": 0.026
-#         - "center": [0.0, 0.075, 0.03]
-#           "radius": 0.026
-#         - "center": [0.0, -0.075, 0.05]
-#           "radius": 0.024
-#         - "center": [0.0, -0.045, 0.05]
-#           "radius": 0.024
-#         - "center": [0.0, -0.015, 0.05]
-#           "radius": 0.024
-#         - "center": [0.0, 0.015, 0.05]
-#           "radius": 0.024
-#         - "center": [0.0, 0.045, 0.05]
-#           "radius": 0.024
-#         - "center": [0.0, 0.075, 0.05]
-#           "radius": 0.024
+    - r_gripper_r_finger_tip:
+        - "center": [0.0, 0.0, 0.0]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.015]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.030]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.045]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.060]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.075]
+          "radius": 0.015
+        - "center": [0.0, 0.0, -0.095]
+          "radius": 0.02

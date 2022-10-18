@@ -2,7 +2,6 @@ import time
 import rclpy
 from rclpy.node import Node
 
-from std_msgs.msg import String
 from sensor_msgs.msg import JointState
 
 from baxter_joint_controller.gripper import Gripper
@@ -11,17 +10,6 @@ import threading
 
 from baxter_core_msgs.msg import (
     JointCommand,
-    EndpointState,
-)
-from json import (
-    JSONDecoder,
-    JSONEncoder,
-)
-
-from baxter_core_msgs.msg import (
-    EndEffectorCommand,
-    EndEffectorProperties,
-    EndEffectorState,
 )
 
 JOINT_ANGLE_TOLERANCE = 0.008726646

@@ -25,7 +25,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import re
 import sys
 import time
 
@@ -33,13 +32,11 @@ from copy import deepcopy
 from math import fabs
 from rclpy.node import Node
 
-import inspect
 from json import (
     JSONDecoder,
     JSONEncoder,
 )
 
-import rclpy
 
 from baxter_core_msgs.msg import (
     EndEffectorCommand,
