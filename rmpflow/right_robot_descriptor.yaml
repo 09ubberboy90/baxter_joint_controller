@@ -22,17 +22,18 @@ cspace:
   - right_w0
   - right_w1
   - right_w2
+  - r_gripper_l_finger_joint
+  - r_gripper_r_finger_joint
 
 root_link: base
-subtree_root_link: torso
+subtree_root_link:
+  torso
 
-default_q: [
-    # Original version
-    # 0.00, 0.00, 0.00, -1.57, 0.00, 1.50, 0.75
+  # Original version
+  # 0.00, 0.00, 0.00, -1.57, 0.00, 1.50, 0.75
 
-    # New config
-    0.0, -0.55, 0.0, 0.75, 0.0, 1.26, 0.0
-]
+  # New config
+default_q: [0.0, -0.55, 0.0, 0.75, 0.0, 1.26, 0.0, .020833, .020833]
 
 # Most dimensions of the cspace have a direct corresponding element
 # in the URDF. This list of rules defines how unspecified coordinates
@@ -43,76 +44,86 @@ cspace_to_urdf_rules:
 
 composite_task_spaces: []
 collision_spheres:
-    - right_upper_shoulder:
-        - "center": [0.0, 0.0, -0.04]
-          "radius": 0.11
-        - "center": [0.0, 0.0, 0.05]
-          "radius": 0.10
-        - "center": [0.0, 0.0, 0.16]
-          "radius": 0.11
-        - "center": [0.0, 0.0, 0.25]
-          "radius": 0.11
-    - right_lower_shoulder:
-        - "center": [0.0, 0.0, 0.00]
-          "radius": 0.13
-    - right_upper_elbow:
-        - "center": [0.0, 0.0, 0.00]
-          "radius": 0.12
-        - "center": [0.0, 0.0, 0.1]
-          "radius": 0.10
-        - "center": [0.0, 0.0, 0.16]
-          "radius": 0.10
-        - "center": [0.0, 0.0, 0.25]
-          "radius": 0.10
-    - right_lower_elbow:
-        - "center": [0.0, 0.0, 0.00]
-          "radius": 0.12
-    - right_upper_forearm:
-        - "center": [0.0, 0.0, 0.00]
-          "radius": 0.1
-        - "center": [0.0, 0.0, 0.08]
-          "radius": 0.09
-        - "center": [0.0, 0.0, 0.15]
-          "radius": 0.09
-    - right_lower_forearm:
-        - "center": [0.0, 0.0, 0.00]
-          "radius": 0.1
-        - "center": [0.1, 0.0, 0.00]
-          "radius": 0.08
-    - right_wrist:
-        - "center": [0.0, 0.0, 0.05]
-          "radius": 0.07
-    - right_hand:
-        - "center": [0.0, 0.0, 0.00]
-          "radius": 0.06
-    - r_gripper_l_finger_tip:
-        - "center": [0.0, 0.0, 0.0]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.015]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.030]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.045]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.060]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.075]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.095]
-          "radius": 0.02
+  - right_upper_shoulder:
+      - "center": [0.0, 0.0, -0.04]
+        "radius": 0.11
+      - "center": [0.0, 0.0, 0.05]
+        "radius": 0.10
+      - "center": [0.0, 0.0, 0.16]
+        "radius": 0.11
+      - "center": [0.0, 0.0, 0.25]
+        "radius": 0.11
+  - right_lower_shoulder:
+      - "center": [0.0, 0.0, 0.00]
+        "radius": 0.13
+  - right_upper_elbow:
+      - "center": [0.0, 0.0, 0.00]
+        "radius": 0.12
+      - "center": [0.0, 0.0, 0.1]
+        "radius": 0.10
+      - "center": [0.0, 0.0, 0.16]
+        "radius": 0.10
+      - "center": [0.0, 0.0, 0.25]
+        "radius": 0.10
+  - right_lower_elbow:
+      - "center": [0.0, 0.0, 0.00]
+        "radius": 0.12
+  - right_upper_forearm:
+      - "center": [0.0, 0.0, 0.00]
+        "radius": 0.1
+      - "center": [0.0, 0.0, 0.08]
+        "radius": 0.09
+      - "center": [0.0, 0.0, 0.15]
+        "radius": 0.09
+  - right_lower_forearm:
+      - "center": [0.0, 0.0, 0.00]
+        "radius": 0.1
+      - "center": [0.1, 0.0, 0.00]
+        "radius": 0.08
+  - right_wrist:
+      - "center": [0.0, 0.0, 0.05]
+        "radius": 0.07
+  - right_hand:
+      - "center": [0.0, 0.0, 0.00]
+        "radius": 0.06
+  - r_gripper_l_finger_tip:
+      - "center": [0.0, 0.0, 0.0]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.015]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.030]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.045]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.060]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.075]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.095]
+        "radius": 0.02
 
-    - r_gripper_r_finger_tip:
-        - "center": [0.0, 0.0, 0.0]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.015]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.030]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.045]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.060]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.075]
-          "radius": 0.015
-        - "center": [0.0, 0.0, -0.095]
-          "radius": 0.02
+  - r_gripper_r_finger_tip:
+      - "center": [0.0, 0.0, 0.0]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.015]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.030]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.045]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.060]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.075]
+        "radius": 0.015
+      - "center": [0.0, 0.0, -0.095]
+        "radius": 0.02
+  - torso:
+      - "center": [0.0, 0.0, 0.0]
+        "radius": 0.2
+      - "center": [0.0, 0.0, 0.2]
+        "radius": 0.23
+      - "center": [0.0, 0.0, 0.43]
+        "radius": 0.2
+  - head:
+      - "center": [0.0, 0.0, 0.0]
+        "radius": 0.2

@@ -8,7 +8,7 @@
 
 # Artificially limit the robot joints.  For example:
 # A joint with range +-pi would be limited to +-(pi-.01)
-joint_limit_buffers: [.01, .01, .01, .01, .01, .01, .01]
+joint_limit_buffers: [.01, .01, .01, .01, .01, .01, .01, .01, .01]
 
 # RMPflow has many modifiable parameters, but these serve as a great start.
 # Most parameters will not need to be modified
@@ -42,8 +42,8 @@ rmp_params:
     damping_gain: 1000.0
     metric_weight: 100.
   target_rmp:
-    accel_p_gain: 30.
-    accel_d_gain: 85.
+    accel_p_gain: 80.
+    accel_d_gain: 120.
     accel_norm_eps: .075
     metric_alpha_length_scale: .05
     min_metric_alpha: .01
@@ -87,14 +87,42 @@ canonical_resolve:
 # The semantic name provided for each body_cylinder does not need to be present in the robot URDF.
 body_cylinders:
   - name: torso
-    pt1: [0, 0, 0.]
-    pt2: [0,0,0]
-    radius: .05
+    pt1: [0.0, 0.0, 0.0]
+    pt2: [0.0, 0.0, 0.2]
+    pt3: [0.0, 0.0, 0.4]
+    pt3: [0.0, 0.0, 0.6]
+    pt3: [0.0, 0.0, 0.8]
+    radius: 0.2
+
+  - name: head
+    pt1: [0.0, 0.0, 0.0]
+    pt2: [0.0, 0.0, 0.0]
+    radius: 0.2
+
+  - name: right_upper_shoulder
+    pt1: [0.069, 0.0, 0.23]
+    pt2: [0.069, 0.0, 0.32]
+    pt3: [0.069, 0.0, 0.43]
+    pt4: [0.069, 0.0, 0.52]
+    radius: 0.11
+
+  - name: left_upper_forearm
+    pt1: [0.0, 0.0, 0.00]
+    pt2: [0.0, 0.0, 0.08]
+    pt3: [0.0, 0.0, 0.15]
+    radius: 0.1
+
 
 # body_collision_controllers defines spheres located at specified frames in the robot URDF
 # These spheres will not be allowed to collide with the capsules enumerated under body_cylinders
 # By design, most frames in industrial robots are kinematically unable to collide with the robot base.
 # It is often only necessary to define body_collision_controllers near the end effector
 body_collision_controllers:
-  - name: right_gripper
-    radius: .05
+  - name: r_gripper_l_finger_tip
+    radius: .015
+  - name: r_gripper_r_finger_tip
+    radius: .015
+  - name: l_gripper_l_finger_tip
+    radius: .015
+  - name: l_gripper_r_finger_tip
+    radius: .015
