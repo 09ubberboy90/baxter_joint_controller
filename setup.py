@@ -1,4 +1,5 @@
 from setuptools import setup
+from glob import glob
 
 package_name = 'baxter_joint_controller'
 
@@ -10,6 +11,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
         ('lib/' + package_name, [package_name + "/gripper.py"]),
     ],
     install_requires=['setuptools'],
