@@ -90,28 +90,25 @@ body_cylinders:
     pt1: [0.0, 0.0, 0.0]
     pt2: [0.0, 0.0, 0.2]
     pt3: [0.0, 0.0, 0.4]
-    pt3: [0.0, 0.0, 0.6]
-    pt3: [0.0, 0.0, 0.8]
+    pt4: [0.0, 0.0, 0.6]
+    pt5: [0.0, 0.0, 0.8]
     radius: 0.2
 
-  - name: head
-    pt1: [0.0, 0.0, 0.0]
-    pt2: [0.0, 0.0, 0.0]
-    radius: 0.2
 
   - name: right_upper_shoulder
-    pt1: [0.069, 0.0, 0.23]
-    pt2: [0.069, 0.0, 0.32]
-    pt3: [0.069, 0.0, 0.43]
-    pt4: [0.069, 0.0, 0.52]
+    pt1: [0.145, -0.22, 0.34]
+    pt2: [0.145, -0.22, 0.43]
+    pt3: [0.145, -0.22, 0.54]
+    pt4: [0.145, -0.22, 0.63]
+    pt5: [0.145, -0.22, 0.74]
     radius: 0.11
-
-  - name: left_upper_forearm
-    pt1: [0.0, 0.0, 0.00]
-    pt2: [0.0, 0.0, 0.08]
-    pt3: [0.0, 0.0, 0.15]
-    radius: 0.1
-
+  - name: left_upper_shoulder
+    pt1: [0.145, 0.22, 0.34]
+    pt2: [0.145, 0.22, 0.43]
+    pt3: [0.145, 0.22, 0.54]
+    pt4: [0.145, 0.22, 0.63]
+    pt5: [0.145, 0.22, 0.74]
+    radius: 0.11
 
 # body_collision_controllers defines spheres located at specified frames in the robot URDF
 # These spheres will not be allowed to collide with the capsules enumerated under body_cylinders
@@ -126,3 +123,16 @@ body_collision_controllers:
     radius: .015
   - name: l_gripper_r_finger_tip
     radius: .015
+
+  - name: left_wrist
+    radius: 0.07
+  - name: right_wrist
+    radius: 0.07
+  - name: right_hand
+    radius: 0.06
+  - name: left_hand
+    radius: 0.06
+  - name: right_lower_forearm
+    radius: 0.1
+  - name: left_lower_forearm
+    radius: 0.1
