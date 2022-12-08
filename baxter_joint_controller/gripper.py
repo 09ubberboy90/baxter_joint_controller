@@ -27,22 +27,13 @@
 
 import sys
 import time
-
 from copy import deepcopy
+from json import JSONDecoder, JSONEncoder
 from math import fabs
+
+from baxter_core_msgs.msg import (EndEffectorCommand, EndEffectorProperties,
+                                  EndEffectorState)
 from rclpy.node import Node
-
-from json import (
-    JSONDecoder,
-    JSONEncoder,
-)
-
-
-from baxter_core_msgs.msg import (
-    EndEffectorCommand,
-    EndEffectorProperties,
-    EndEffectorState,
-)
 
 SDK_VERSION = '1.2.0'
 

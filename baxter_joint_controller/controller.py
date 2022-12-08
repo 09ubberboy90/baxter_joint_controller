@@ -1,16 +1,12 @@
+import threading
 import time
+
 import rclpy
-from rclpy.node import Node
-
-from sensor_msgs.msg import JointState
-
+from baxter_core_msgs.msg import JointCommand
 from baxter_joint_controller.gripper import Gripper
 from rclpy.executors import MultiThreadedExecutor
-import threading
-
-from baxter_core_msgs.msg import (
-    JointCommand,
-)
+from rclpy.node import Node
+from sensor_msgs.msg import JointState
 
 JOINT_ANGLE_TOLERANCE = 0.008726646
 HEAD_PAN_ANGLE_TOLERANCE = 0.1396263401
