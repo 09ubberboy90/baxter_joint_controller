@@ -1,0 +1,10 @@
+{
+    "end_effector_frame_name": "left_gripper",
+    "maximum_substep_size" : 0.00334,
+    "ignore_robot_state_updates" : false,
+    "relative_asset_paths": {
+        "robot_description_path" : "left_robot_descriptor.yaml",
+        "urdf_path": "../urdf/baxter.urdf",
+        "rmpflow_config_path" : "baxter_rmpflow_common.yaml"
+    }
+}

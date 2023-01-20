@@ -1262,13 +1262,13 @@
     <visual>
       <origin rpy="0 0 3.141592653589793" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/ubb/Documents/Baxter_isaac/ROS1/src/baxter_common/rethink_ee_description/meshes/electric_gripper/fingers/half_round_tip.DAE"/>
+        <mesh filename="/home/ubb/Documents/Baxter_isaac/ROS1/src/baxter_common/rethink_ee_description/meshes/electric_gripper/fingers/paddle_tip.DAE"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 3.141592653589793" xyz="0 -0.0045 -0.015"/>
       <geometry>
-        <cylinder length="0.037" radius="0.008"/>
+        <box size="0.042 0.0065 0.037"/>
       </geometry>
     </collision>
     <inertial>
@@ -1318,13 +1318,13 @@
     <visual>
       <origin rpy="0 0 0.0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/ubb/Documents/Baxter_isaac/ROS1/src/baxter_common/rethink_ee_description/meshes/electric_gripper/fingers/half_round_tip.DAE"/>
+        <mesh filename="/home/ubb/Documents/Baxter_isaac/ROS1/src/baxter_common/rethink_ee_description/meshes/electric_gripper/fingers/paddle_tip.DAE"/>
       </geometry>
     </visual>
     <collision>
       <origin rpy="0 0 0.0" xyz="0 0.0045 -0.015"/>
       <geometry>
-        <cylinder length="0.037" radius="0.008"/>
+        <box size="0.042 0.0065 0.037"/>
       </geometry>
     </collision>
     <inertial>
