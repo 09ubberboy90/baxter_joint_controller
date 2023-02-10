@@ -15,12 +15,12 @@ class JointController(Node):
 
     def __init__(self):
         super().__init__('baxter_joint_controller')
-        self.left_publisher = self.create_publisher(JointCommand, '/robot/limb/left/joint_command', 10)
+        # self.left_publisher = self.create_publisher(JointCommand, '/robot/limb/left/joint_command', 10)
         self.right_publisher = self.create_publisher(JointCommand, '/robot/limb/right/joint_command', 10)
-        self._gripper_left = Gripper("left", self, False)
+        # self._gripper_left = Gripper("left", self, False)
         self._gripper_right = Gripper("right", self, False)
-        self.left_thread = threading.Thread(target=self.init_gripper, args=(self._gripper_left,))
-        self.left_thread.start()
+        # self.left_thread = threading.Thread(target=self.init_gripper, args=(self._gripper_left,))
+        # self.left_thread.start()
         self.right_thread = threading.Thread(target=self.init_gripper, args=(self._gripper_right,))
         self.right_thread.start()
 
@@ -87,12 +87,12 @@ class JointController(Node):
 
     def timer_callback(self):
         self.right_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["right"]], hand="right"))
-        self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
-        if self._gripper_left.calibrated != True:
-            try:
-                self._gripper_left.command_position(min(self.convert_range(self.joint_states["l_gripper_l_finger_joint"]), self.convert_range(self.joint_states["l_gripper_r_finger_joint"])))
-            except KeyError:
-                pass
+        # self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
+        # if self._gripper_left.calibrated != True:
+        #     try:
+        #         self._gripper_left.command_position(min(self.convert_range(self.joint_states["l_gripper_l_finger_joint"]), self.convert_range(self.joint_states["l_gripper_r_finger_joint"])))
+        #     except KeyError:
+        #         pass
         if self._gripper_right.calibrated != True:
             try:
                 self._gripper_right.command_position(min(self.convert_range(self.joint_states["r_gripper_l_finger_joint"]), self.convert_range(self.joint_states["r_gripper_r_finger_joint"])))
