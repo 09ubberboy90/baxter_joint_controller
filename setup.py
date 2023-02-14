@@ -13,6 +13,8 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
+        ('share/' + package_name + '/urdf', glob('urdf/*.urdf')),
+        ('share/' + package_name + '/rmpflow', glob('rmpflow/*.*')),
         ('lib/' + package_name, [package_name + "/gripper.py"]),
     ],
     install_requires=['setuptools'],
