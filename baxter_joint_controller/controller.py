@@ -26,7 +26,7 @@ class JointController(Node):
 
         self.subscription = self.create_subscription(
             JointState,
-            'joint_states_sim',
+            'joint_states',
             self.listener_callback,
             10)
         self.joint_states = {}
@@ -53,7 +53,7 @@ class JointController(Node):
         return
         
 
-    def set_joint_positions(self, positions, hand="right", raw=False ):
+    def set_joint_positions(self, names, positions, hand="right", raw=True ):
         """
         Commands the joints of this limb to the specified positions.
 
@@ -68,7 +68,8 @@ class JointController(Node):
         command_msg = JointCommand()
         if hand not in ["right", "left"]:
             return command_msg
-        command_msg.names = self._joint_names[hand]
+        # command_msg.names = self._joint_names[hand]
+        command_msg.names = names
         command_msg.command = positions
         if raw:
             command_msg.mode = JointCommand.RAW_POSITION_MODE
@@ -79,6 +80,7 @@ class JointController(Node):
     def listener_callback(self, msg:JointState):
         for name, pose in zip(msg.name, msg.position):
             self.joint_states[name] = pose
+        # print(self.joint_states)
 
     def convert_range(self,value):
         # print(f"Original : {value}, New : {(value * 100 / 0.020833)}")
@@ -86,8 +88,8 @@ class JointController(Node):
 
 
     def timer_callback(self):
-        self.right_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["right"]], hand="right"))
-        self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
+        self.right_publisher.publish(self.set_joint_positions([x for x, y in self.joint_states.items() if x in self._joint_names["right"]], [y for x, y in self.joint_states.items() if x in self._joint_names["right"]], hand="right"))
+        self.left_publisher.publish(self.set_joint_positions([x for x, y in self.joint_states.items() if x in self._joint_names["left"]],[y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
         if self._gripper_left.calibrated != True:
             try:
                 self._gripper_left.command_position(min(self.convert_range(self.joint_states["l_gripper_l_finger_joint"]), self.convert_range(self.joint_states["l_gripper_r_finger_joint"])))
