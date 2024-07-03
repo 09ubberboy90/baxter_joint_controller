@@ -7,6 +7,10 @@ from baxter_joint_controller.gripper import Gripper
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
+from cv_bridge import CvBridge
+from sensor_msgs.msg import Image
+import cv2
+import numpy as np
 
 JOINT_ANGLE_TOLERANCE = 0.008726646
 HEAD_PAN_ANGLE_TOLERANCE = 0.1396263401
@@ -17,6 +21,9 @@ class JointController(Node):
         super().__init__('baxter_joint_controller')
         self.left_publisher = self.create_publisher(JointCommand, '/robot/limb/left/joint_command', 10)
         self.right_publisher = self.create_publisher(JointCommand, '/robot/limb/right/joint_command', 10)
+        self.publisher_ = self.create_publisher(Image, '/robot/xdisplay', 10)
+        self.cv_image = cv2.imread('/home/ubb/Pictures/cvas.png') ### an RGB image 
+        self.bridge = CvBridge()
         self._gripper_left = Gripper("left", self, False)
         self._gripper_right = Gripper("right", self, False)
         self.left_thread = threading.Thread(target=self.init_gripper, args=(self._gripper_left,))
@@ -38,12 +45,14 @@ class JointController(Node):
                      'left_w0', 'left_w1', 'left_w2'],
             'right': ['right_s0', 'right_s1', 'right_e0', 'right_e1',
                       'right_w0', 'right_w1', 'right_w2'],
+            "head": ["head_pan", "head_tilt"],
             # 'left_gripper' : ["l_gripper_l_finger_joint",
             #                 "l_gripper_r_finger_joint",],
             # 'right_gripper' : ["r_gripper_l_finger_joint",
             #                 "r_gripper_r_finger_joint",]
             }
 
+        self.publisher_.publish(self.bridge.cv2_to_imgmsg(np.array(self.cv_image), "bgr8"))
     def init_gripper(self, gripper:Gripper):
         while not (gripper.state_init and gripper.prop_init):
             time.sleep(.1)

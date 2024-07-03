@@ -27,6 +27,7 @@ setup(
     entry_points={
         'console_scripts': [
             "controller = baxter_joint_controller.controller:main",
+            "image_publisher = baxter_joint_controller.image_publisher:main"
 
         ],
     },
