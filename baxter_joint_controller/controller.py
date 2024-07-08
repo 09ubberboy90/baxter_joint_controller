@@ -95,13 +95,14 @@ class JointController(Node):
 
 
     def timer_callback(self):
+        # self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
+        # if self._gripper_left.calibrated != True:
+        #     try:
+        #         self._gripper_left.command_position(min(self.convert_range(self.joint_states["l_gripper_l_finger_joint"]), self.convert_range(self.joint_states["l_gripper_r_finger_joint"])))
+        #     except KeyError:
+        #         pass
+        
         self.right_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["right"]], hand="right"))
-        self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
-        if self._gripper_left.calibrated != True:
-            try:
-                self._gripper_left.command_position(min(self.convert_range(self.joint_states["l_gripper_l_finger_joint"]), self.convert_range(self.joint_states["l_gripper_r_finger_joint"])))
-            except KeyError:
-                pass
         if self._gripper_right.calibrated != True:
             try:
                 self._gripper_right.command_position(min(self.convert_range(self.joint_states["r_gripper_l_finger_joint"]), self.convert_range(self.joint_states["r_gripper_r_finger_joint"])))
