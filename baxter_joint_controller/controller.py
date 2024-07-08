@@ -33,7 +33,7 @@ class JointController(Node):
 
         self.subscription = self.create_subscription(
             JointState,
-            'joint_states_sim',
+            'baxter/joint_states_sim',
             self.listener_callback,
             10)
         self.joint_states = {}
@@ -88,11 +88,6 @@ class JointController(Node):
     def listener_callback(self, msg:JointState):
         for name, pose in zip(msg.name, msg.position):
             self.joint_states[name] = pose
-
-    def convert_range(self,value):
-        # print(f"Original : {value}, New : {(value * 100 / 0.020833)}")
-        return (abs(value) * 100 / 0.020833)
-
 
     def timer_callback(self):
         # self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
