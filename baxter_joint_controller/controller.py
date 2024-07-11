@@ -21,6 +21,8 @@ class JointController(Node):
         super().__init__('baxter_joint_controller')
         self.left_publisher = self.create_publisher(JointCommand, '/robot/limb/left/joint_command', 10)
         self.right_publisher = self.create_publisher(JointCommand, '/robot/limb/right/joint_command', 10)
+        ## Needed as robot only publishes left finger state not right
+        self.other_gripper = self.create_publisher(JointState, '/robot/joint_states', 10)
         self.publisher_ = self.create_publisher(Image, '/robot/xdisplay', 10)
         self.cv_image = cv2.imread('/home/ubb/Pictures/cvas.png') ### an RGB image 
         self.bridge = CvBridge()
@@ -86,21 +88,27 @@ class JointController(Node):
         return command_msg
 
     def listener_callback(self, msg:JointState):
-        for name, pose in zip(msg.name, msg.position):
-            self.joint_states[name] = pose
+        for name in msg.name:
+            self.joint_states[name] = msg
+
+    def convert_range(self,value):
+        # print(f"Original : {value}, New : {(value * 100 / 0.020833)}")
+        return (abs(value) * 100 / 0.020833)
+
 
     def timer_callback(self):
-        # self.left_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
+        # self.left_publisher.publish(self.set_joint_positions([y.position for x, y in self.joint_states.items() if x in self._joint_names["left"]], hand="left"))
         # if self._gripper_left.calibrated != True:
         #     try:
         #         self._gripper_left.command_position(min(self.convert_range(self.joint_states["l_gripper_l_finger_joint"]), self.convert_range(self.joint_states["l_gripper_r_finger_joint"])))
         #     except KeyError:
         #         pass
-        
-        self.right_publisher.publish(self.set_joint_positions([y for x, y in self.joint_states.items() if x in self._joint_names["right"]], hand="right"))
+        self.other_gripper.publish(self.joint_states["r_gripper_r_finger_joint"])
+        self.other_gripper.publish(self.joint_states["l_gripper_r_finger_joint"])
+        self.right_publisher.publish(self.set_joint_positions([y.position for x, y in self.joint_states.items() if x in self._joint_names["right"]], hand="right"))
         if self._gripper_right.calibrated != True:
             try:
-                self._gripper_right.command_position(min(self.convert_range(self.joint_states["r_gripper_l_finger_joint"]), self.convert_range(self.joint_states["r_gripper_r_finger_joint"])))
+                self._gripper_right.command_position(min(self.convert_range(self.joint_states["r_gripper_l_finger_joint"].position), self.convert_range(self.joint_states["r_gripper_r_finger_joint"].position)))
             except KeyError:
                 pass
 
